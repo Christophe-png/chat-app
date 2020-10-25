@@ -1,8 +1,8 @@
-import React,{component} from "react";
+import React,{Component} from "react";
 import "./Contact.css";
 import PropTypes from "prop-types";
 
-export default class Contact extends component {
+export default class Contact extends Component {
     constructor (props) {
         super(props);
         this.state= {online : props.online,}
@@ -16,20 +16,20 @@ export default class Contact extends component {
             <div>
                 <h4 className="name">{this.props.name}</h4>
                 <div className="status" 
-                {onClick={event => {
+                onClick={event => {
                     this.state.online ? this.setState({online:false}) : this.setState({online:true});
 
-                }}
-                    <span
-                        className={this.state.online ? "status-online" : "status-offline"}
-                    ></span>
-                    <span className="status-text">
-                        {this.state.online ? "online" : "offline"}
-                    </span>
+                }}>
+                    <div className={this.state.online ? "status-online" : "status-offline"}/>
+                    
+                    <p className="status-text">
+                        {this.state.online ? "online" : "offline"}</p>
+                    
                 </div>
             </div>
         </div>
     );
+};
 }
 
 Contact.propTypes = {
