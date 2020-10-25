@@ -1,19 +1,30 @@
-import React from "react";
+import React,{component} from "react";
 import "./Contact.css";
 import PropTypes from "prop-types";
 
-export default function Contact(props) {
+export default class Contact extends component {
+    constructor (props) {
+        super(props);
+        this.state= {online : props.online,}
+        
+    }
+    render () {
+        
     return (
         <div className="Contact">
-            <img className="avatar" src={props.avatar} alt="{props.name}" />
+            <img className="avatar" src={this.props.avatar} alt="{props.name}" />
             <div>
-                <h4 className="name">{props.name}</h4>
-                <div className="status">
+                <h4 className="name">{this.props.name}</h4>
+                <div className="status" 
+                {onClick={event => {
+                    this.state.online ? this.setState({online:false}) : this.setState({online:true});
+
+                }}
                     <span
-                        className={props.online ? "status-online" : "status-offline"}
+                        className={this.state.online ? "status-online" : "status-offline"}
                     ></span>
                     <span className="status-text">
-                        {props.online ? "online" : "offline"}
+                        {this.state.online ? "online" : "offline"}
                     </span>
                 </div>
             </div>
